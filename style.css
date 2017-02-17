@@ -1,0 +1,70 @@
+/* General */
+html {
+  box-sizing: 'border-box';
+}
+
+body {
+  background-image: url('binary.jpg');
+}
+
+.center {
+  text-align: center;
+}
+
+/* App body */
+#app {
+  width: 60%;
+  margin: 50px auto;
+  background-color: rgba(256, 256, 256, 0.5)
+}
+
+#input-parent {
+  position: relative;
+  width: 160px;
+  margin: 5% auto 50px;
+}
+
+#player-input {
+  font-size: 60px;
+  width: 160px;
+  height: 160px;
+  border-radius: 500%;
+}
+
+#submit {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: 110px;
+  left: 110px;
+  border-radius: 50%
+}
+
+#guess-list {
+  list-style: none;
+  padding: 0;
+}
+
+.guess {
+  display: inline;
+  font-size: 60px;
+  border: 1px solid black;
+  padding: 0 25px;
+  border-radius: 10%;
+  background-color: white;
+}
+
+/* Footer */
+#footer {
+  position: fixed;
+  width: 100%;
+  border-top: solid 2px black;
+  background-color: white;
+  bottom: 0;
+}
+
+.logos {
+  display: inline;
+  width: 200px;
+  height: 100px;
+}
