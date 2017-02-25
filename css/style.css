@@ -18,6 +18,14 @@ body {
   background-color: rgba(256, 256, 256, 0.5)
 }
 
+.title {
+  font-weight: bold;
+}
+
+.subtitle {
+  font-weight: bold;
+}
+
 #input-parent {
   position: relative;
   width: 160px;

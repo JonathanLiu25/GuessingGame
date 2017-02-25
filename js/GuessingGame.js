@@ -16,15 +16,20 @@ Game.prototype.playersGuessSubmission = function(num) {
 
 Game.prototype.checkGuess = function(num) {
 	if (num === this.winningNumber) {
+		// Added for jQuery
+		$('#hint, #submit').prop('disabled', true)
+		//
 		return 'You Win!'
-	}
-
-	if (this.pastGuesses.includes(num)) {
+	} else if (this.pastGuesses.includes(num)) {
 		return 'You have already guessed that number.'
 	} else {
 		this.pastGuesses.push(num)
+		$('#guess-list li:nth-child('+ this.pastGuesses.length +')').text(this.playersGuess)
 		
 		if (this.pastGuesses.length === 5) {
+			// Added for jQuery
+			$('#hint, #submit').prop('disabled', true)
+			//
 			return 'You Lose.'
 		}
 
@@ -74,3 +79,38 @@ function shuffle(ary) {
 
 	return ary
 }
+
+$(document).ready(function() {
+	var game = new Game()
+
+	function makeGuess(game) {
+		var output = game.playersGuessSubmission(+$('#player-input').val())
+		$('.title').text(output)
+		$('.subtitle').text('You need to guess ' + (game.isLower() ? 'higher.' : 'lower.'))
+		$('#player-input').val('')
+	}
+	
+	$('#submit').on('click', function() {
+		makeGuess(game)
+	})
+
+	$('#player-input').keypress(function(event) {
+		if (event.which === 13 && !$('#submit').prop('disabled')) {
+			makeGuess(game)
+		}
+	})
+
+	$('#reset').on('click', function() {
+		newGame()
+		$('.title').text('Play the Guessing Game!')
+		$('.subtitle').text('Guess a number between 1-100!')
+		$('.guess').text('-')
+		$('#player-input').val('')
+		$('#hint, #submit').prop('disabled', false)
+	})
+
+	$('#hint').on('click', function() {
+		var hints = game.provideHint()
+		$('.title').text('The winning number is: ' + hints[0] + ', ' + hints[1] + ', or ' + hints[2] + '.')
+	})
+})
